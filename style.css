@@ -9,6 +9,8 @@
 #display {
     border: 1px solid black;
     min-height: 200px;
+    display: flex;
+    justify-content: center;
 }
 .button-box {
     display: grid;
@@ -19,4 +21,5 @@ button {
     height: 80px;
     width: 80px;
     margin-top: 20px;
+    margin-left: 20px;
 }
