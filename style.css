@@ -1,0 +1,22 @@
+.calculator {
+    display: flex;
+    flex-direction: column;
+    color: grey;
+    background-color: grey;
+    width: 500px;
+    height: 800px;
+}
+#display {
+    border: 1px solid black;
+    min-height: 200px;
+}
+.button-box {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+button {
+    height: 80px;
+    width: 80px;
+    margin-top: 20px;
+}
