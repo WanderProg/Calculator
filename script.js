@@ -24,18 +24,22 @@ ac.addEventListener("click", () => {
 })
 
 seven.addEventListener("click", () => {
+clearIfError()
   display.value += 7
 })
 
 eight.addEventListener("click", () => {
+  clearIfError()
   display.value += 8
 })
 
 nine.addEventListener("click", () => {
+  clearIfError()
   display.value += 9
 })
 
 six.addEventListener("click", () => {
+  clearIfError()
   display.value += 6
 })
 
@@ -44,25 +48,31 @@ five.addEventListener("click", () => {
 })
 
 four.addEventListener("click", () => {
+  clearIfError()
   display.value += 4
 })
 
 three.addEventListener("click", () => {
+  clearIfError()
   display.value += 3
 })
 
 two.addEventListener("click", () => {
+  clearIfError()
   display.value += 2
 })
 
 one.addEventListener("click", () => {
+  clearIfError()
   display.value += 1
 })
 
 zero.addEventListener("click", () => {
+  clearIfError()
   display.value += 0
 })
 plus.addEventListener("click", () => {
+  clearIfError()
   if (
     display.value.includes("+") ||
     display.value.includes("-") ||
@@ -75,6 +85,7 @@ plus.addEventListener("click", () => {
 })
 
 minus.addEventListener("click", () => {
+  clearIfError()
   if (
     display.value.includes("+") ||
     display.value.includes("-") ||
@@ -87,6 +98,7 @@ minus.addEventListener("click", () => {
 })
 
 divides.addEventListener("click", () => {
+  clearIfError()
   if (
     display.value.includes("+") ||
     display.value.includes("-") ||
@@ -99,6 +111,7 @@ divides.addEventListener("click", () => {
 })
 
 multiplyer.addEventListener("click", () => {
+  clearIfError()
   if (
     display.value.includes("+") ||
     display.value.includes("-") ||
@@ -112,6 +125,7 @@ multiplyer.addEventListener("click", () => {
 })
 
 is.addEventListener("click", () => {
+  clearIfError()
   display.value = calculateData(display.value)
 })
 
@@ -150,10 +164,16 @@ function operate(operator, number1, number2) {
       return divide(number1, number2)
   }
 }
+function clearIfError() {
+  if (display.value === "Can't devide") {
+    display.value = ""
+  }
+}
+
 
 function cantHandle() {
-  return "Can't devive"
-
+  display.value = "Can't devide"
+  return "Can't devide"
 }
 
 function calculateData(calculatorString) {
