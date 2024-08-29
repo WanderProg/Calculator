@@ -24,7 +24,7 @@ ac.addEventListener("click", () => {
 })
 
 seven.addEventListener("click", () => {
-clearIfError()
+  clearIfError()
   display.value += 7
 })
 
@@ -79,7 +79,7 @@ plus.addEventListener("click", () => {
     display.value.includes("*") ||
     display.value.includes("/")
   ) {
-     display.value = calculateData(display.value)
+    display.value = calculateData(display.value)
   }
   display.value += "+"
 })
@@ -92,7 +92,7 @@ minus.addEventListener("click", () => {
     display.value.includes("*") ||
     display.value.includes("/")
   ) {
-     display.value = calculateData(display.value)
+    display.value = calculateData(display.value)
   }
   display.value += "-"
 })
@@ -105,7 +105,7 @@ divides.addEventListener("click", () => {
     display.value.includes("*") ||
     display.value.includes("/")
   ) {
-     display.value = calculateData(display.value)
+    display.value = calculateData(display.value)
   }
   display.value += "/"
 })
@@ -118,8 +118,7 @@ multiplyer.addEventListener("click", () => {
     display.value.includes("*") ||
     display.value.includes("/")
   ) {
-     display.value = calculateData(display.value)
-    console.log(display.value)
+    display.value = calculateData(display.value)
   }
   display.value += "*"
 })
@@ -165,15 +164,25 @@ function operate(operator, number1, number2) {
   }
 }
 function clearIfError() {
-  if (display.value === "Can't devide") {
+  if (
+    display.value === "Error" ||
+    display.value === "Infinity" ||
+    display.value === "undefined" ||
+    display.value === "NaN" ||
+    display.value.includes("NaN/") ||
+    display.value.includes("0*")
+  ) {
     display.value = ""
+    return ""
   }
 }
 
-
 function cantHandle() {
-  display.value = "Can't devide"
-  return "Can't devide"
+  return "Error"
+}
+
+function cantOperate() {
+
 }
 
 function calculateData(calculatorString) {
@@ -184,7 +193,7 @@ function calculateData(calculatorString) {
   let secondValue = ""
 
   for (i = 0; i < currentValue.length; i++) {
-    if (
+  if (
       currentValue[i] === "+" ||
       currentValue[i] === "-" ||
       currentValue[i] === "*" ||
@@ -193,18 +202,26 @@ function calculateData(calculatorString) {
       operator = currentValue[i]
     } else {
       if (operator == "") {
-        firstValue = firstValue + currentValue[i]
+        firstValue += currentValue[i]
       } else {
-        secondValue = secondValue + currentValue[i]
+        secondValue += currentValue[i]
       }
     }
+  if(operator === "-" && secondValue.includes("+")) {
+    return "Error"
+  }  
+  if(operator == "*" && firstValue === "*" && secondValue === "*") {
+    return cantHandle()
+  } 
+  if(operator === "-" && firstValue.includes("+")) {} 
   }
 
-  if(operator === "/" && secondValue.includes(0)) {
-    // return "Can't devide"
+  if (
+    (operator === "/" && secondValue.includes(0))
+  ) {
     return cantHandle()
   }
 
-
   return operate(operator, Number(firstValue), Number(secondValue))
 }
+
